@@ -3,139 +3,282 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>812RP | FiveM Server</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>812RP | Jeffersonville, IN Roleplay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    
     <style>
+        :root {
+            --primary: #ff3131;
+            --primary-dark: #b30000;
+            --bg-dark: #0a0a0a;
+            --card-bg: rgba(20, 20, 20, 0.95);
+            --text-gray: #b0b0b0;
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('https://images.unsplash.com/photo-1509194800518-3542dd256a7c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Video/Image Background */
+        .hero {
+            height: 100vh;
+            width: 100%;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(10,10,10,1)), 
+                        url('https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?auto=format&fit=crop&q=80&w=1920');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
-            color: white;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
             text-align: center;
-            background: rgba(0, 0, 0, 0.85);
-            padding: 50px;
-            border-radius: 15px;
-            border: 2px solid #ff4444;
-            max-width: 600px;
-            box-shadow: 0 0 20px rgba(255, 68, 68, 0.3);
+            padding: 20px;
         }
 
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
+        .hero-content h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(3.5rem, 10vw, 6rem);
+            margin: 0;
+            line-height: 1;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
+            filter: drop-shadow(0 5px 15px rgba(255,49,49,0.4));
         }
 
-        h1 span {
-            color: #ff4444;
+        .hero-content h1 span {
+            color: var(--primary);
         }
 
-        p.subtitle {
-            font-size: 1.1rem;
-            color: #ccc;
-            margin-bottom: 30px;
-        }
-
-        .join-btn {
-            display: inline-block;
-            background-color: #ff4444;
-            color: white;
-            padding: 18px 40px;
-            text-decoration: none;
-            font-weight: 900;
+        .hero-subtitle {
             font-size: 1.2rem;
-            border-radius: 5px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            transition: 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 68, 68, 0.4);
+            color: var(--text-gray);
+            margin: 20px 0 40px;
         }
 
-        .join-btn:hover {
-            background-color: #cc0000;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 68, 68, 0.6);
+        /* Buttons */
+        .btn-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        .prompt-text {
-            font-size: 0.8rem;
-            margin-top: 10px;
-            color: #888;
+        .btn {
+            padding: 18px 40px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 1px;
         }
 
-        .rules-section {
-            margin-top: 40px;
-            text-align: left;
-            border-top: 1px solid #333;
-            padding-top: 20px;
+        .btn-join {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 0 20px rgba(255, 49, 49, 0.4);
+        }
+
+        .btn-discord {
+            background: #5865F2;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: scale(1.05) translateY(-5px);
+            filter: brightness(1.2);
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 100px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #222;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .card i {
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 20px;
         }
 
         h2 {
-            color: #ff4444;
-            font-size: 1.5rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        /* FAQ Accordion */
+        .faq-item {
+            background: #151515;
             margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
         }
 
-        ul {
-            list-style: none;
-            padding: 0;
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        ul li {
-            margin-bottom: 10px;
-            padding-left: 25px;
-            position: relative;
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: 0.3s ease-out;
+            color: var(--text-gray);
+            background: #1a1a1a;
         }
 
-        ul li::before {
-            content: '➤';
-            position: absolute;
-            left: 0;
-            color: #ff4444;
-        }
-
+        /* Footer */
         footer {
-            margin-top: 30px;
-            font-size: 0.8rem;
+            text-align: center;
+            padding: 60px 20px;
+            background: #050505;
+            border-top: 1px solid #222;
             color: #555;
+        }
+
+        .jeff-detail {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 3rem; }
+            .btn { width: 100%; justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>812<span>RP</span></h1>
-        <p class="subtitle">Experience the ultimate Grand Theft Auto V Roleplay.</p>
-
-        <a href="fivem://connect/cfx.re/join/ok37zy" class="join-btn">Join Server Now</a>
-        <p class="prompt-text">Click "Open FiveM" if your browser asks for permission.</p>
-
-        <div class="rules-section">
-            <h2>Server Rules</h2>
-            <ul>
-                <li><strong>Respect:</strong> Treat all players with respect out-of-character.</li>
-                <li><strong>No RDM/VDM:</strong> Random killing or using vehicles as weapons is prohibited.</li>
-                <li><strong>Stay In Character:</strong> Keep chat and actions focused on RP at all times.</li>
-                <li><strong>Fair Play:</strong> No cheating, exploiting, or combat logging.</li>
-            </ul>
+    <div class="hero">
+        <div class="hero-content">
+            <h1 class="reveal-top">812<span>RP</span></h1>
+            <p class="hero-subtitle reveal-top">Authentic Jeffersonville, Indiana Roleplay</p>
+            <div class="btn-container reveal-bottom">
+                <a href="fivem://connect/cfx.re/join/ok37zy" class="btn btn-join">
+                    <i class="fas fa-play"></i> Join Server
+                </a>
+                <a href="https://discord.gg/MzehFTcVGn" class="btn btn-discord" target="_blank">
+                    <i class="fab fa-discord"></i> Discord
+                </a>
+            </div>
         </div>
-
-        <footer>
-            &copy; 2026 812RP Community. All rights reserved.
-        </footer>
     </div>
 
+    <div class="section">
+        <h2>Why Play 812RP?</h2>
+        <div class="grid">
+            <div class="card reveal-left">
+                <i class="fas fa-map-marked-alt"></i>
+                <h3>Real-Life Location</h3>
+                <p>Experience roleplay set in the heart of <span class="jeff-detail">Jeffersonville (The 812)</span>. From local landmarks to Indiana-styled emergency services.</p>
+            </div>
+            <div class="card reveal-bottom">
+                <i class="fas fa-briefcase"></i>
+                <h3>IRL Economy</h3>
+                <p>Our economy is tuned to reflect real-world wages and prices. Every dollar you earn in the city matters.</p>
+            </div>
+            <div class="card reveal-right">
+                <i class="fas fa-user-shield"></i>
+                <h3>Professional Staff</h3>
+                <p>Active, mature management dedicated to maintaining high-quality roleplay and a toxic-free environment.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Common Questions</h2>
+        <div class="faq-container reveal-bottom">
+            <div class="faq-item">
+                <div class="faq-question">What is 812RP? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer"><p>We are a Serious RP community based on Jeffersonville, Indiana. We focus on immersion, realistic interactions, and community-driven stories.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Do I need a whitelist? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer"><p>Currently, 812RP is in a closed beta release, so we're still squashing a few bugs. Whitelist applications for PD, EMS, and Mechanics are open in our Discord.</p></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How do I join the PD or EMS? <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer"><p>Join our Discord, head to the #applications channel, and fill out the form for the department you are interested in.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 812RP | Representing Jeffersonville, IN</p>
+        <p style="font-size: 0.7rem;">Designed for the 812 Community</p>
+    </footer>
+
+    <script>
+        // ScrollReveal Animations
+        ScrollReveal().reveal('.reveal-top', { delay: 200, distance: '50px', origin: 'top' });
+        ScrollReveal().reveal('.reveal-bottom', { delay: 300, distance: '50px', origin: 'bottom' });
+        ScrollReveal().reveal('.reveal-left', { delay: 400, distance: '50px', origin: 'left' });
+        ScrollReveal().reveal('.reveal-right', { delay: 400, distance: '50px', origin: 'right' });
+
+        // FAQ Functionality
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.nextElementSibling;
+                const icon = item.querySelector('i');
+                
+                if (answer.style.maxHeight) {
+                    answer.style.maxHeight = null;
+                    answer.style.padding = "0 20px";
+                    icon.style.transform = "rotate(0deg)";
+                } else {
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                    answer.style.padding = "10px 20px 20px";
+                    icon.style.transform = "rotate(180deg)";
+                }
+            });
+        });
+    </script>
 </body>
 </html>
